@@ -1,3 +1,32 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <section class="hero is-fullheight cli">
+    <div class="hero-title">
+      <h1 class="title">
+        {{title}}
+      </h1>
+    </div>
+    <div class="hero-body">
+
+      <ul class="command-list">
+        <li class="command" *ngFor="let item of commands">
+          <pre>{{'$-' + item.command}}</pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-foot">
+
+      <div class="field is-grouped">
+        <p class="control is-expanded">
+          <input [(ngModel)]='command' class="input" type="text" placeholder="Type a command..">
+        </p>
+        <p class="control">
+          <a class="button is-info" (click)="clicked()">
+          Send command
+        </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</div>

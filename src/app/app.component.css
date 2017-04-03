@@ -1,0 +1,12 @@
+.cli {
+  padding: 20px;
+}
+
+.command-list {
+  width: 85%;
+}
+
+.command {
+  margin-top: 10px;
+  min-height: 25px;
+}
