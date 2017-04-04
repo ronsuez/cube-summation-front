@@ -9,7 +9,7 @@
 
       <ul class="command-list">
         <li class="command" *ngFor="let item of commands">
-          <pre>{{'$-' + item.command}}</pre>
+          <pre>{{renderCommand(item)}}</pre>
         </li>
       </ul>
     </div>
