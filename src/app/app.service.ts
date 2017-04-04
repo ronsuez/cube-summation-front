@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AppService {
 
-  private base = 'http://localhost:3000/api/cube';
+  private base = 'https://cube-summation-back.herokuapp.com/api/cube';
 
   constructor(private http: Http) {};
 
