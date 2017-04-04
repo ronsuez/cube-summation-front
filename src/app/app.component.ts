@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AppService} from './app.service';
 import {Observable} from "rxjs/Rx";
-import {map} from 'async-es/map';
+const async = require('async-es');
 
 @Component({
   selector: 'app-root',
@@ -196,13 +196,16 @@ export class AppComponent {
 
       let commands = set.commands.map((command => command.replace('-cubeid-', resp.data._id)));
 
-      console.log(commands);
 
-      commands.map((command) => {
+      async.mapSeries(commands, (command, next) => {
         let expression = this.createCommand(command);
         this.runCommand(expression)
-            .then(resp => this.serverCommand(expression, resp));
-      })
+            .then(resp => [this.serverCommand(expression, resp), resp])
+            .then((resp) => next(null, resp))
+            .catch((err) => next(err));
+      }, (err, res) => {
+        console.log(err, res);
+      });
     })
   }
 
